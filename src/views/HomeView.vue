@@ -5,11 +5,11 @@ import GoodsMain from "@/components/GoodsMain.vue";
 
 <template>
   <main>
-    <div class="first__screen h-[646px] w-[100%] mt-[16px]">
+    <div class="first__screen h-[646px] bg-[red] w-[100%] mt-[16px]">
       <div class="first__screen__wrapper h-[646px] w-[1248px] m-auto rounded-[16px]">
         <div class="first__screen__wrappper__text h-[100%] w-[50%] px-[39px] flex flex-col items-start justify-center">
 
-          <h2 class="text-[43px]">Gold big hoops </h2>
+          <h2 class="text-[43px]">Gold big boobs </h2>
           <p class="text-[35px]">$ 68,00</p>
           <button class="bg-[transparent] text-[20px] h-[53px] w-[193px] mt-[40px] rounded-[6px] border-[2px] border-solid border-[#fff]">View Product</button>
 
