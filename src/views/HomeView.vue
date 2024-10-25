@@ -5,7 +5,7 @@ import GoodsMain from "@/components/GoodsMain.vue";
 
 <template>
   <main>
-    <div class="first__screen h-[646px] bg-[red] w-[100%] mt-[16px]">
+    <div class="first__screen h-[646px] bg-[blue] w-[100%] mt-[16px]">
       <div class="first__screen__wrapper h-[646px] w-[1248px] m-auto rounded-[16px]">
         <div class="first__screen__wrappper__text h-[100%] w-[50%] px-[39px] flex flex-col items-start justify-center">
 
