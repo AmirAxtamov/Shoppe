@@ -19,7 +19,7 @@ let dataFunc = () => {
         <div class="h-[100%] w-[1248px] m-auto flex flex-col">
 
             <div class="texts w-[100%] flex justify-between items-center">
-                <h2 class="text-[33px] font-[550]">Shop The Latest</h2>
+                <h2 class="text-[33px] font-[550]">Shoppe The Latest</h2>
                 <button class="text-[#A18A68] text-[20px] font-[500]">View All</button>
             </div>
 
