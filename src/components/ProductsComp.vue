@@ -1,14 +1,16 @@
 <script setup>
-import { useProductsStore } from '@/stores/products';
+import router from '@/router';
 import { ref } from 'vue';
-
-// store products
-const productStore = useProductsStore()
+import { defineProps } from 'vue';
+const props = defineProps({
+    // показываем что берем 1.options это наш массив и передаем какой тип
+    products_item: Array,
+})
 </script>
 
 
 <template>
-    <div v-for="item of productStore.products" :key="item.id"
+    <div v-for="item of props.products_item" :key="item.id" @click="$router.push(`/catalog/${item.id}`)"
         class="h-[392px] cursor-pointer border-b-[1px] border-solid border-[#707070] w-[300px] flex flex-col items-start relative">
         <img class="rounded-[8px] h-[300px] w-[100%] bg-[gray]" :src="item.img[0]" :alt="item.title">
         <!-- discount -->
