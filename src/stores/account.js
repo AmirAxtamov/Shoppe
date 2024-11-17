@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 
 export const useAccountStore = defineStore('account', () => {
     
+  const auth = ref(false)
     const account = ref({
         username: '',
         password: '',
@@ -12,5 +13,5 @@ export const useAccountStore = defineStore('account', () => {
 
     })
 
-  return {  }
+  return { auth }
 })
