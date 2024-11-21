@@ -2,7 +2,7 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import fetch from '../utils/axios.js'
 
-export const useProductsStore = defineStore('counter', () => {
+export const useProductsStore = defineStore('products', {
 
     // const products = ref([
 
@@ -229,16 +229,96 @@ export const useProductsStore = defineStore('counter', () => {
 
     // ])
 
-    const products = ref([])
-    
-    /* в пустой массив products внутри просто хранит axios фунцию fetch. А fetch возвращает нам ответ response */ 
-    let fetch_product = async () => products.value = await fetch('/shoppe_array')    
-    fetch_product()
 
-    
-    
+    state: () => ({
+        products: [],
+        latestProducts: [],
+        fallback: [],
+        filterBy: ['', '', '', ''],
+        eventPr: {}
+    }),
+    actions: {
+        // async getEventProduct(id){
+        //     // мы вызываем эту функцию чтобы когда мы переходили на товары через ссылку чтоб переходило
+        //     await this.fetch_product()
+        //     console.log(id);
+        //     this.eventPr = this.products.find(product => product.id == id)     
+        //     return this.eventPr != undefined ? this.eventPr : false         
+        // },
+        /* в пустой массив products внутри просто хранит axios фунцию fetch. А fetch возвращает нам ответ response */
+        async fetch_product() {
+            this.products = await fetch('/shoppe_array')
+            this.fallback = this.products
+        },
+        async fetch_product_by_date() {
+            const fetch_products = await fetch('/shoppe_array')
+            // const dates = fetch_products.map(item => +item.date.split('.')[0])
+
+            const getLast7Days = Array.from({ length: 7 }, (_, i) => {
+                const date = new Date(Date.now() - i * 86400000);
+                return `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.
+                    getFullYear()}`;
+            });
+
+            this.latestProducts = fetch_products.filter(item => getLast7Days.includes(item.date)).splice(0, 6)
+
+        },
+        sortByParams() {
+            // console.log(this.filterBy);
+            // this.products.map(item => {
+
+                if (this.filterBy[0] != '') {
+                    this.fallback = this.fallback.filter(item => item.additional.Colours == this.filterBy[0])
+                }
+            if(this.filterBy[0] == 'Any colors'){
+                this.fallback = this.products
+            }
+            
+            else if (this.filterBy[1] != '') {
+                this.fallback = this.fallback.filter(item => item.additional.Material == this.filterBy[1])
+            }
+            if(this.filterBy[1] == 'Any materials'){
+                this.fallback = this.products
+            }
+            // else if (this.filterBy[2] != '') {
+
+            // }
+            // else if (this.filterBy[3] != '') {
+
+            // }
+            // console.log(this.filterBy);
+            console.log(this.fallback);
+
+            // })
+        }
+
+
+        // !!!!!!!
+        // sortBy(type) {
+        //     console.log(event.target.value);
+        //     // console.log(event.target.value + ' - ' + type);
+
+        //     switch (type) {
+        //         case "color":
+        //             this.fallback = this.products.filter(item => item.additional.Colours == event.target.value)
+        //             break;
+        //         case 'material':
+        //             console.log(this.fallback);
+
+        //             this.fallback = this.products.filter(item => item.additional.Material == event.target.value)
+        //             // Здесь короче если элемент материал будет равняться на материал на который мы нажали будет фильтроваться и присваиватсья this.fallback
+        //             // console.log(this.products.filter(item => console.log(item.additional.Material == event.target.value)));
+        //             break;
+        //         default:
+        //     }
+
+        // }
+    }
+
+
+
     /* мы в axios ednpoint = к shoppe_array и ты где модешь угодно использовать это меняя название */
     // await fetch('/shoppe_array')
-    
-    return { products }
+
+    // return { products }
 })

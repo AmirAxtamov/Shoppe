@@ -1,7 +1,7 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useBlogStore = defineStore('counter', () => {
+export const useBlogStore = defineStore('blogs', () => {
 
     const blogs = ref([
         {

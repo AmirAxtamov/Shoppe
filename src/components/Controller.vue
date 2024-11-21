@@ -1,5 +1,9 @@
 <script setup>
-
+// import { defineProps } from 'vue';
+// const props = defineProps({
+//     // показываем что берем 1.options это наш массив и передаем какой тип
+//     options: Array,
+// })
 </script>
 
 

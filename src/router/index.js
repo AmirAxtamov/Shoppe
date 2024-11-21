@@ -14,9 +14,8 @@ const router = createRouter({
       component: () => import('../views/CatalogView.vue')
     },
     {
-      path: '/product',
-      // path: '/catalog/:id',
-      name: 'product',
+      path: '/catalog/:id', // после двоиточие любой приведет к Product View и если ты ставишь : то роут любой это правильный
+      name: 'product-view',
       component: () => import('../views/ProductView.vue')
     },
     {
@@ -28,6 +27,16 @@ const router = createRouter({
       path: '/story',
       name: 'story',
       component: () => import('../views/StoryView.vue')
+    },
+    {
+      path: '/registration',
+      name: 'registration',
+      component: () => import('../views/RegistrationAccView.vue')
+    },
+    {
+      path: '/:catchAll(.*)', // Маршрут для любого неопределенного пути
+      name: 'NotFound',
+      component: () => import('../views/errors/ProductNotFoundView.vue')
     },
   ]
 })
